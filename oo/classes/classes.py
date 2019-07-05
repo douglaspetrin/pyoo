@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 class ContaBancaria(object):
+    VALOR_INVALIDO = 'Valor muito alto, consulte seu gerente!'
+
     def __init__(self):
         self.saldo = 0
 
@@ -9,6 +11,13 @@ class ContaBancaria(object):
 
     def sacar(self, valor):
         self.saldo -= valor
+
+    def ted(self, valor):
+        if valor >= 900:
+            raise Exception(self.VALOR_INVALIDO)
+        else:
+            self.saldo -= valor
+            print(self.saldo)
 
 class Investimentos(ContaBancaria):
     def renda_fixa(self):
