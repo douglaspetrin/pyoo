@@ -2,6 +2,7 @@
 
 class ContaBancaria(object):
     VALOR_INVALIDO = 'Valor muito alto, consulte seu gerente!'
+    VALOR_MIN = 'O valor mínimo para essa operação é R$ 50'
 
     def __init__(self):
         self.saldo = 0
@@ -25,3 +26,12 @@ class Investimentos(ContaBancaria):
 
     def renda_variavel(self, hipotese):
         return self.saldo * hipotese
+
+    def cryptocurrency(self, valor):
+        if valor <= 50:
+            raise Exception(self.VALOR_MIN)
+        else:
+            super(Investimentos, self).sacar(valor)
+
+class Polimorfismo(Investimentos):
+    pass
